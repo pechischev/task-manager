@@ -1,0 +1,16 @@
+{
+  "name": "@task-manager/server",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node index.js",
+    "build": "echo 'need implement'",
+    "test": "echo 'need implement'",
+    "init:deps": "yarn install"
+  },
+  "dependencies": {
+    "@logux/server": "0.9.5"
+  },
+  "peerDependencies": {
+    "@logux/server": "0.9.5"
+  }
+}

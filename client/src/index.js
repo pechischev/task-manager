@@ -8,7 +8,7 @@ import {createLoguxCreator} from '@logux/redux';
 import {badge, badgeEn, log} from '@logux/client';
 import {badgeStyles} from '@logux/client/badge/styles';
 
-import reducer from '../reducers';
+import reducer from './reducers';
 
 import App from './app/App';
 
