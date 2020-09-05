@@ -1,12 +1,13 @@
 import {createLoguxCreator} from '@logux/redux';
-import {badge, badgeEn, log} from '@logux/client';
+import {badge, badgeEn, ClientOptions, IndexedStore, log} from '@logux/client';
 import {badgeStyles} from '@logux/client/badge/styles';
 
 import reducers from './reducers';
 
-const getStore = (config = {}) => {
+const getStore = (config: ClientOptions) => {
   const createStore = createLoguxCreator({
-    ...config,
+    ...(config || {}),
+    store: new IndexedStore(),
     subprotocol: '1.0.0',
     userId: 'todo',  // TODO: We will fill it in Authentication recipe
     token: '' // TODO: We will fill it in Authentication recipe

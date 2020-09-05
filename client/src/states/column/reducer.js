@@ -1,6 +1,15 @@
 import * as actionTypes from './types.js';
 
-const initialItems = [];
+const initialItems = [
+  {
+    id: 1,
+    title: 'Planned',
+  },
+  {
+    id: 2,
+    title: 'Today',
+  },
+];
 
 const reducer = (items = initialItems, action) => {
   switch (action.type) {

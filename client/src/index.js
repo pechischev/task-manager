@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
-import {getStore} from './states/store.js';
+import {getStore} from './states/store.ts';
 
 import {App} from './app/App.tsx';
 
