@@ -1,5 +1,7 @@
 import React, {FC, useCallback, useState} from 'react';
 
+import {Field} from '../../../components/Field';
+
 import {ITaskFormProps} from './ITaskFormProps';
 
 const TaskForm: FC<ITaskFormProps> = ({ data= {}, onSubmit: handleSubmit }) => {
@@ -22,21 +24,9 @@ const TaskForm: FC<ITaskFormProps> = ({ data= {}, onSubmit: handleSubmit }) => {
 
   return (
     <form style={{ display: 'flex', flexDirection: 'column'}}>
-      <label>
-        <span>Title</span>
-        <input required type="text" onChange={(event) => onChange('title', event.target.value)}/>
-      </label>
-
-      <label>
-        <span>Description</span>
-        <textarea onChange={(event) => onChange('description', event.target.value)}/>
-      </label>
-
-      <label>
-        <span>Due date</span>
-        <input type="date" onChange={(event) => onChange('due_date', event.target.value)}/>
-      </label>
-
+      <Field type="text" label="Title" required onChange={(_, value) => onChange('title', value)} />
+      <Field type="textarea" label="Description" onChange={(_, value) => onChange('description', value)} />
+      <Field type="date" label="Due date" onChange={(_, value) => onChange('due_date', value)} />
       <button type="submit" onClick={onSubmit}>
         Save
       </button>
