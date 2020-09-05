@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React from 'react';
 
 import {IColumnProps} from './IColumnProps';
 
@@ -8,7 +8,7 @@ const Column: React.FunctionComponent<IColumnProps> = ({children, title, onAppen
       {title}
     </div>
     <div className="column__items">
-      {React.Children.map(children, (child: ReactElement) => React.cloneElement(child, {className: 'column__item'}))}
+      {children}
     </div>
   </div>
 );

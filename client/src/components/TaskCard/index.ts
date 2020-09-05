@@ -1,2 +1,2 @@
 export * from './TaskCard.jsx';
-export * as ITaskCardProps from './ITaskCardProps';
+export * from './ITaskCardProps';
