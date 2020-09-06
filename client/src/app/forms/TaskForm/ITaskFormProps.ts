@@ -1,5 +1,7 @@
-export interface ITaskFormProps {
-  data?: object;
+import {TaskDto} from '../../../states/task';
 
-  onSubmit: (data: object) => void;
+export interface ITaskFormProps {
+  data?: TaskDto;
+
+  onSubmit: (data: TaskDto) => void;
 }

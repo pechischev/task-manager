@@ -13,9 +13,9 @@ import {useInitApp} from './useInitApp';
 import {getTasksByColumn} from '../states/selectors';
 import {TaskCard} from '../components/TaskCard';
 import {createTask} from '../states/handlers';
-import {TaskDto} from '../states/task';
+import {ITask, taskActions, TaskDto} from '../states/task';
 
-type Form = {is_open: boolean, column?: string}
+type Form = {is_open: boolean, column?: string, data?: ITask}
 
 export const App: React.FunctionComponent = () => {
   useInitApp();
@@ -30,22 +30,23 @@ export const App: React.FunctionComponent = () => {
   }, [])
 
   const onAddTask = useCallback((dto) => {
-    const actionCreator = createTask(dto as TaskDto, formData.column as string);
-    actionCreator(dispatch)
+    if (dto.id) {
+      dispatch(taskActions.editTask(dto))
+    } else {
+      const actionCreator = createTask(dto as TaskDto, formData.column as string);
+      actionCreator(dispatch)
+    }
+
     handleClose()
-  }, [formData]);
+  }, [dispatch, formData.column, handleClose]);
 
   const columnList = columns.map((column: IColumn) => (
     <Column
       key={column.id}
       title={column.title}
-      onAppend={() => {
-      }}
-      onChangeTitle={() => {
-      }}
     >
       {getTasksByColumn(state, column.id).map((task) => (
-        <TaskCard title={task.title} onChange={() => void 0} />
+        <TaskCard title={task.title} onClick={() => setFormData({is_open: true, column: column.id, data: task})} />
       ))}
       <AddTask onClick={() => {
         setFormData({is_open: true, column: column.id});
@@ -60,7 +61,7 @@ export const App: React.FunctionComponent = () => {
         {formData.is_open && (
           <div>
             <span onClick={handleClose}>X</span>
-            <TaskForm onSubmit={onAddTask}/>
+            <TaskForm data={formData.data} onSubmit={onAddTask}/>
           </div>
         )}
       </div>
