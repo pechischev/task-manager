@@ -5,4 +5,4 @@ export interface ITask {
   due_date: string;
 }
 
-export type TaskDto = Omit<ITask, 'id'>;
+export type TaskDto = Omit<ITask, 'id'> & {id?: string};

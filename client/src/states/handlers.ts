@@ -13,6 +13,13 @@ export const createTask = (task_data: TaskDto, column_id: string) => {
   };
 };
 
+export const updateTask = (task_id: string, task_data: TaskDto) => {
+  return (dispatch: AppDispatch) => {
+    dispatch(taskActions.editTask({id: task_id, ...task_data}));
+    // TODO: here will change the type project
+  };
+}
+
 export const deleteTask = (task_id: string, column_id: string) => {
   return (dispatch: AppDispatch) => {
     dispatch(taskActions.removeTask(task_id));
