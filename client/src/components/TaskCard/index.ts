@@ -1,2 +1,2 @@
-export * from './TaskCard.jsx';
+export * from './TaskCard';
 export * from './ITaskCardProps';

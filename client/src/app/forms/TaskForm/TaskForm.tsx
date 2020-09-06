@@ -4,8 +4,8 @@ import {Field} from '../../../components/Field';
 
 import {ITaskFormProps} from './ITaskFormProps';
 
-const TaskForm: FC<ITaskFormProps> = ({ data= {}, onSubmit: handleSubmit }) => {
-  const [formData, setFormData] = useState(data)
+const TaskForm: FC<ITaskFormProps> = ({ data, onSubmit: handleSubmit }) => {
+  const [formData, setFormData] = useState(data || {})
 
   const onChange = useCallback((field: string, value: string) => {
     setFormData({
