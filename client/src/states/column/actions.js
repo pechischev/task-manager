@@ -1,9 +1,9 @@
-import { v5 as uuidv5 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 import * as actionTypes from './types';
 
 const addColumn = ({ title }) => ({
   type: actionTypes.addColumn,
-  column: {id: uuidv5(), title},
+  column: {id: uuidv4(), title},
 });
 
 const editColumn = (id, {title}) => ({
@@ -34,4 +34,12 @@ const moveColumnItem = (task_id, {source_column_id, target_column_id, position }
   },
 });
 
-export { addColumn, editColumn, removeColumn, moveColumnItem, pushColumnItem };
+const popColumnItem = (task_id, column_id) => ({
+  type: actionTypes.popColumnItem,
+  pop_data: {
+    item_id: task_id,
+    column_id,
+  },
+});
+
+export { addColumn, editColumn, removeColumn, moveColumnItem, pushColumnItem, popColumnItem };
