@@ -1,4 +1,4 @@
-export interface IColumn {
+export interface Column {
   id: string;
   title: string;
   items: string[];

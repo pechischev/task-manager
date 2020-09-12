@@ -3,7 +3,6 @@ import {badge, badgeEn, log} from '@logux/client';
 import {badgeStyles} from '@logux/client/badge/styles';
 
 import reducers from './reducers';
-import {useDispatch} from 'react-redux';
 
 const createStore = createLoguxCreator({
   server: process.env.NODE_ENV === 'development'
@@ -21,6 +20,6 @@ log(store.client);
 
 export type AppState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppDispatch = () => store.dispatch;
 
 export default store;

@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import {ITask, taskActions, TaskDto} from './task';
+import {Task, taskActions, TaskDto} from './task';
 import {columnActions} from './column';
 import {AppDispatch} from './store';
 
 export const createTask = (task_data: TaskDto, column_id: string) => {
-  const task: ITask = { id: uuidv4(), ...task_data};
+  const task: Task = { id: uuidv4(), ...task_data};
 
   return (dispatch: AppDispatch) => {
     dispatch(taskActions.addTask(task));

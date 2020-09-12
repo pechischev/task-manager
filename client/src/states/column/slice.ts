@@ -1,14 +1,14 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {ColumnData, ColumnMoveData, IColumn} from './interfaces';
+import {ColumnData, ColumnMoveData, Column} from './interfaces';
 
 export const columnSlice = createSlice({
   name: 'columns',
-  initialState: [] as IColumn[],
+  initialState: [] as Column[],
   reducers: {
-    addColumn(state, action: PayloadAction<IColumn>) {
+    addColumn(state, action: PayloadAction<Column>) {
       state.push(action.payload);
     },
-    editColumn(state, action: PayloadAction<IColumn>) {
+    editColumn(state, action: PayloadAction<Column>) {
       const newColumn = action.payload;
       const column = state.find((item) => item.id === newColumn.id);
       if (column) {

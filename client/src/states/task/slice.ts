@@ -1,14 +1,14 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {ITask} from './interfaces';
+import {Task} from './interfaces';
 
 export const taskSlice = createSlice({
   name: 'tasks',
-  initialState: [] as ITask[],
+  initialState: [] as Task[],
   reducers: {
-    addTask(state, action: PayloadAction<ITask>) {
+    addTask(state, action: PayloadAction<Task>) {
       state.push(action.payload);
     },
-    editTask(state, action: PayloadAction<ITask>) {
+    editTask(state, action: PayloadAction<Task>) {
       const newTask = action.payload;
       const task = state.find((item) => item.id === newTask.id);
       if (task) {
