@@ -2,10 +2,15 @@ import React, {FC, useCallback, useState} from 'react';
 
 import {Field} from '../../../components/Field';
 
-import {ITaskFormProps} from './ITaskFormProps';
 import {TaskDto} from '../../../states/task';
 
-const TaskForm: FC<ITaskFormProps> = ({ data, onSubmit: handleSubmit }) => {
+type TaskFormProps = {
+  data?: TaskDto;
+
+  onSubmit: (data: TaskDto) => void;
+}
+
+const TaskForm: FC<TaskFormProps> = ({ data, onSubmit: handleSubmit }) => {
   const [formData, setFormData] = useState(data || {} as TaskDto)
 
   const onChange = useCallback((field: string, value: string) => {

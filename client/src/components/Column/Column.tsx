@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 
-import {IColumnProps} from './IColumnProps';
+type ColumnProps = {
+  title: string;
+  onAppend?: () => void;
+  onChangeTitle?: () => void;
+}
 
-const Column: React.FunctionComponent<IColumnProps> = ({children, title, onAppend, onChangeTitle, ...rest}) => (
-  <div className="column" {...rest}>
+const Column: FC<ColumnProps> = ({children, title, onAppend, onChangeTitle}) => (
+  <div className="column">
     <div className="column__title">
       {title}
     </div>

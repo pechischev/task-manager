@@ -1,8 +1,12 @@
-import React, {FunctionComponent} from 'react';
+import React, { FunctionComponent } from 'react';
 
-import {ITaskCardProps} from './ITaskCardProps';
+export type TaskCardProps = {
+  title: string;
 
-const TaskCard: FunctionComponent<ITaskCardProps> = ({ title, ...rest }) => (
+  onClick(): void;
+}
+
+const TaskCard: FunctionComponent<TaskCardProps> = ({ title, ...rest }) => (
   <div className="task-card" {...rest}>
     <div className="task-card__title">{title}</div>
   </div>

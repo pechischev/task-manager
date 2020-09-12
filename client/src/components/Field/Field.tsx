@@ -1,6 +1,13 @@
 import React, {FC, useCallback} from 'react';
 
-import {IFieldProps} from './IFieldProps';
+type FieldProps = {
+  type: string;
+  label: string;
+  required?: boolean;
+  value?: string;
+
+  onChange(event: Event, value: string): void;
+}
 
 function getFieldElementByType(type: string): JSX.Element {
   if (type === 'date') {
@@ -11,7 +18,7 @@ function getFieldElementByType(type: string): JSX.Element {
   return <input type="text" />;
 }
 
-export const Field: FC<IFieldProps> = ({ children, label, type, onChange: handleChange, ...rest }) => {
+export const Field: FC<FieldProps> = ({ children, label, type, onChange: handleChange, ...rest }) => {
   const fieldElement = getFieldElementByType(type);
 
   const onChange = useCallback((event) => {
