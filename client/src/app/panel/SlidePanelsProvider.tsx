@@ -17,8 +17,8 @@ type Panel = { [key: string]: boolean }
 export const SlidePanelsProvider: FC = ({ children }) => {
   const [panelsData, setPanelsData] = useState<Panel>({})
 
-  const openPanel = useCallback((panelName: string) => setPanelsData({ [panelName]: true }), [])
-  const closePanel = useCallback((panelName: string) => setPanelsData({ [panelName]: false }), [])
+  const openPanel = useCallback((panelName: string) => setPanelsData({ [panelName]: true }), [setPanelsData])
+  const closePanel = useCallback((panelName: string) => setPanelsData({ [panelName]: false }), [setPanelsData])
   const isOpen = useCallback((panelName: string) => panelsData[panelName], [panelsData])
 
   return (
