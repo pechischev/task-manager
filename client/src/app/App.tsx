@@ -7,9 +7,9 @@ import { Column as ColumnComponent } from '../components/Column'
 import { TaskCard } from '../components/TaskCard'
 import { TaskForm } from './forms/TaskForm'
 
-import { AppState } from '../states/store'
-import { Column } from '../states/column'
-import { getTasksByColumn } from '../states/selectors'
+import { SlidePanel, SlidePanelsProvider } from './panel'
+
+import { getFilteringTasksByTag, getGroupedTasks } from '../states/selectors'
 
 import { useInitApp } from './useInitApp'
 import { useTasks } from './useTasks'
@@ -17,13 +17,12 @@ import { useTasks } from './useTasks'
 export const App: React.FunctionComponent = () => {
   useInitApp()
 
-  const { showPanel, taskDto, closePanel, handleChangeTask, handleSubmitTask } = useTasks()
-  const state = useSelector((state: AppState) => state)
-  const { columns } = state
+  const { taskDto, handleChangeTask, handleSubmitTask } = useTasks()
+  const groupedTask = useSelector(getGroupedTasks)
 
-  const columnList = columns.map((column: Column) => (
+  const columnList = groupedTask.map(({ column, columnTasks }) => (
     <ColumnComponent key={column.id} title={column.title}>
-      {getTasksByColumn(state, column.id).map((task) => (
+      {getFilteringTasksByTag(columnTasks).map((task) => (
         <TaskCard key={task.id} title={task.title} onClick={() => handleChangeTask(column.id, task)} />
       ))}
       <AddTask onClick={() => handleChangeTask(column.id)} />
@@ -31,16 +30,15 @@ export const App: React.FunctionComponent = () => {
   ))
 
   return (
-    <Layout>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        {columnList}
-        {showPanel && (
-          <div>
-            <span onClick={closePanel}>X</span>
+    <SlidePanelsProvider>
+      <Layout>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          {columnList}
+          <SlidePanel name="task-form">
             <TaskForm data={taskDto} onSubmit={handleSubmitTask} />
-          </div>
-        )}
-      </div>
-    </Layout>
+          </SlidePanel>
+        </div>
+      </Layout>
+    </SlidePanelsProvider>
   )
 }
