@@ -1,8 +1,12 @@
-import React, {HTMLAttributes} from 'react';
+import React, { FC } from 'react'
 
 import './AddTask.css'
 
-export const AddTask: React.FunctionComponent<HTMLAttributes<HTMLButtonElement>> = (props) => (
+type AddTaskProps = {
+  onClick: () => void
+}
+
+export const AddTask: FC<AddTaskProps> = (props) => (
   <button className="add-task" {...props}>
     + Add task
   </button>

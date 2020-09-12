@@ -1,28 +1,28 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
-import {Task, taskActions, TaskDto} from './task';
-import {columnActions} from './column';
-import {AppDispatch} from './store';
+import { Task, taskActions, TaskDto } from './task'
+import { columnActions } from './column'
+import { AppDispatch } from './store'
 
-export const createTask = (task_data: TaskDto, column_id: string) => {
-  const task: Task = { id: uuidv4(), ...task_data};
+export const createTask = (taskData: TaskDto, columnId: string) => {
+  const task: Task = { id: uuidv4(), ...taskData }
 
   return (dispatch: AppDispatch) => {
-    dispatch(taskActions.addTask(task));
-    dispatch(columnActions.pushItem({item_id: task.id, column_id}));
-  };
-};
-
-export const updateTask = (task_id: string, task_data: TaskDto) => {
-  return (dispatch: AppDispatch) => {
-    dispatch(taskActions.editTask({id: task_id, ...task_data}));
-    // TODO: here will change the type project
-  };
+    dispatch(taskActions.addTask(task))
+    dispatch(columnActions.pushItem({ itemId: task.id, columnId }))
+  }
 }
 
-export const deleteTask = (task_id: string, column_id: string) => {
+export const updateTask = (taskId: string, taskData: TaskDto) => {
   return (dispatch: AppDispatch) => {
-    dispatch(taskActions.removeTask(task_id));
-    dispatch(columnActions.popItem({item_id: task_id, column_id}));
-  };
-};
+    dispatch(taskActions.editTask({ id: taskId, ...taskData }))
+    // TODO: here will change the type project
+  }
+}
+
+export const deleteTask = (taskId: string, columnId: string) => {
+  return (dispatch: AppDispatch) => {
+    dispatch(taskActions.removeTask(taskId))
+    dispatch(columnActions.popItem({ itemId: taskId, columnId }))
+  }
+}

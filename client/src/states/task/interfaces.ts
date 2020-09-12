@@ -1,8 +1,8 @@
 export interface Task {
-  id: string;
-  title: string;
-  description: string;
-  due_date: string;
+  id: string
+  title: string
+  description: string
+  dueDate: string
 }
 
-export type TaskDto = Omit<Task, 'id'> & {id?: string};
+export type TaskDto = Omit<Task, 'id'> & { id?: string }

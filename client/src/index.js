@@ -1,6 +1,8 @@
+// eslint-disable-next-line no-use-before-define
+import React from 'react'
+
 import * as serviceWorker from './serviceWorker'
 
-import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
@@ -8,7 +10,7 @@ import store from './states/store.ts'
 
 import { App } from './app/App.tsx'
 
-store.client.start();
+store.client.start()
 
 ReactDOM.render(
   <Provider store={store}>

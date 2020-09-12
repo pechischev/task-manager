@@ -30,7 +30,7 @@
   --transition: color 0 var(--anim-ease-out);
 }
 
-@media(hover: hover) {
+@media (hover: hover) {
   .add-task:hover {
     --color: var(--color-accent-action);
     --transition: color 0 var(--anim-ease-out);

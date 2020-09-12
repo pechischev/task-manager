@@ -1,11 +1,13 @@
-import {AppState} from './store';
+import { AppState } from './store'
 
-export const getTasksByColumn = (state: AppState, column_id: string) => {
-  const { columns, tasks } = state;
+import { Task } from './task'
 
-  const column = columns.find((column) => column.id === column_id);
+export const getTasksByColumn = (state: AppState, columnId: string): Task[] => {
+  const { columns, tasks } = state
+
+  const column = columns.find((column) => column.id === columnId)
   if (!column) {
     return []
   }
-  return tasks.filter((task) => column.items.includes(task.id));
-};
+  return tasks.filter((task) => column.items.includes(task.id))
+}

@@ -1,7 +1,7 @@
-import {columnSlice} from './slice';
+import { columnSlice } from './slice'
 
-const {actions, reducer } = columnSlice;
+const { actions, reducer } = columnSlice
 
-export * from './interfaces';
-export {actions as columnActions};
-export default reducer;
+export * from './interfaces'
+export { actions as columnActions }
+export default reducer

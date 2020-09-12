@@ -1,12 +1,12 @@
-import React, { FunctionComponent } from 'react'
+import React, { FC } from 'react'
 
 export type TaskCardProps = {
-  title: string;
+  title: string
 
-  onClick(): void;
+  onClick: () => void
 }
 
-const TaskCard: FunctionComponent<TaskCardProps> = ({ title, ...rest }) => (
+const TaskCard: FC<TaskCardProps> = ({ title, ...rest }) => (
   <div className="task-card" {...rest}>
     <div className="task-card__title">{title}</div>
   </div>

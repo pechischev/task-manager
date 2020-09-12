@@ -1,5 +1,5 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import './Layout.css'
 
-export const Layout: React.FunctionComponent = ({ children }) => <div className="layout">{children}</div>
+export const Layout: FC = ({ children }) => <div className="layout">{children}</div>
