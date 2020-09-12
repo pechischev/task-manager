@@ -1,2 +1,2 @@
-export {reducer as columnReducer} from './reducer';
-export * from './actions';
+export { reducer as columnReducer } from './reducer'
+export * from './actions'
