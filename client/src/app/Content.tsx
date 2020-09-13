@@ -7,6 +7,7 @@ import { AddTask } from '../components/AddTask/AddTask'
 
 import { SlidePanel } from './panel'
 import { TaskForm } from './forms/TaskForm'
+import { TagsForm } from './forms/TagsForm'
 
 import { getFilteringTasksByTag, getGroupedTasks } from '../states/selectors'
 
@@ -30,6 +31,9 @@ export const Content: FC = () => {
       {columnList}
       <SlidePanel name="task-form">
         <TaskForm data={taskDto} onSubmit={handleSubmitTask} />
+      </SlidePanel>
+      <SlidePanel name="tags-form">
+        <TagsForm />
       </SlidePanel>
     </div>
   )

@@ -17,7 +17,7 @@ export const columnSlice = createSlice({
     },
     removeColumn(state, action: PayloadAction<string>) {
       const columnId = action.payload
-      state = state.filter((item) => item.id === columnId)
+      state = state.filter((item) => item.id !== columnId)
     },
     pushItem(state, action: PayloadAction<ColumnData>) {
       const { itemId, columnId } = action.payload

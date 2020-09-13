@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react'
 
 type FieldProps = {
   type: string
-  label: string
+  label?: string
   required?: boolean
   value?: string
 
@@ -30,7 +30,7 @@ export const Field: FC<FieldProps> = ({ children, label, type, onChange: handleC
 
   return (
     <label className="field">
-      <span className="field__label">{label}</span>
+      {label && <span className="field__label">{label}</span>}
       {React.cloneElement(fieldElement, { className: 'field__input', onChange, ...rest })}
     </label>
   )
