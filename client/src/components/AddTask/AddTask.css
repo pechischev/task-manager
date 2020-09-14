@@ -1,4 +1,4 @@
-.AddTask {
+.add-task {
   --typo-font-size: 16px;
 
   --width: 100%;
@@ -21,24 +21,24 @@
   transition: var(--transition);
 }
 
-.AddTask:focus {
+.add-task:focus {
   outline: none;
 }
 
-.AddTask:focus-visible {
+.add-task:focus-visible {
   --color: var(--color-accent-action);
   --transition: color 0 var(--anim-ease-out);
 }
 
-@media(hover: hover) {
-  .AddTask:hover {
+@media (hover: hover) {
+  .add-task:hover {
     --color: var(--color-accent-action);
     --transition: color 0 var(--anim-ease-out);
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .AddTask {
+  .add-task {
     --typo-font-size: 0;
 
     --height: 64px;
@@ -47,14 +47,14 @@
     font-weight: 100;
   }
 
-  .AddTask::first-letter {
+  .add-task::first-letter {
     --typo-font-size: 64px;
     --typo-line-height: 0.35;
   }
 }
 
 @media only screen and (min-width: 600px) {
-  .AddTask {
+  .add-task {
     --width: fit-content;
     --padding-v: 8px;
     --padding-h: var(--size-side);

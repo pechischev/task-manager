@@ -1,7 +1,7 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: "./tsconfig.json",
+    project: './tsconfig.json',
     ecmaVersion: 2020,
     sourceType: 'module',
     ecmaFeatures: {
@@ -22,5 +22,11 @@ module.exports = {
   ],
   rules: {
     'comma-dangle': 'off',
+    'space-before-function-paren': 0,
+    'react/prop-types': 0,
+    '@typescript-eslint/consistent-type-definitions': 0,
+    '@typescript-eslint/strict-boolean-expressions': 0,
+    '@typescript-eslint/space-before-function-paren': 0,
+    '@typescript-eslint/explicit-function-return-type': 0,
   },
 }

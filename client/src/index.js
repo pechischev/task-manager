@@ -1,16 +1,15 @@
+// eslint-disable-next-line no-use-before-define
+import React from 'react'
+
 import * as serviceWorker from './serviceWorker'
 
-import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
-import { getStore } from './states/store.js'
+import store from './states/store.ts'
 
 import { App } from './app/App.tsx'
 
-const store = getStore({
-  server: process.env.NODE_ENV === 'development' ? 'ws://localhost:31337' : 'wss://logux.example.com',
-})
 store.client.start()
 
 ReactDOM.render(

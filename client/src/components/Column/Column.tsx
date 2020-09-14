@@ -1,13 +1,16 @@
-import React, { ReactElement } from 'react'
+import React, { FC } from 'react'
 
-import { IColumnProps } from './IColumnProps'
+type ColumnProps = {
+  title: string
 
-const Column: React.FunctionComponent<IColumnProps> = ({ children, title, onAppend, onChangeTitle, ...rest }) => (
-  <div className="column" {...rest}>
+  onAppend?: () => void
+  onChangeTitle?: () => void
+}
+
+const Column: FC<ColumnProps> = ({ children, title, onAppend, onChangeTitle }) => (
+  <div className="column">
     <div className="column__title">{title}</div>
-    <div className="column__items">
-      {React.Children.map(children, (child: ReactElement) => React.cloneElement(child, { className: 'column__item' }))}
-    </div>
+    <div className="column__items">{children}</div>
   </div>
 )
 
