@@ -2,12 +2,12 @@ import React, { FC, useCallback, useState } from 'react'
 
 import { Field } from '../../../components/Field'
 
-import { TaskDto } from '../../../states/task'
+import { TaskFormDto } from '../../../states/interfaces'
 
 type TaskFormProps = {
   data?: TaskDto
 
-  onSubmit: (data: TaskDto) => void
+  onSubmit: (data: TaskFormDto) => void
 }
 
 const TaskForm: FC<TaskFormProps> = ({ data = {}, onSubmit: handleSubmit }) => {

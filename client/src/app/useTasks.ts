@@ -11,6 +11,12 @@ type Form = {
   dto?: TaskDto
 }
 
+/*
+  1. Перенести в таск форм
+  2. сделать селектор, который получает значение формы по id (task + tags)
+  3. зарефакторить хук и форму
+  4. поправить экшены по CRUD тасковв handlers
+ */
 export const useTasks = () => {
   const { closePanel, openPanel } = useContext(SlidePanelsContext)
   const [formData, setFormData] = useState<Form>({})

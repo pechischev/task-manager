@@ -1,11 +1,13 @@
 import { v4 as uuidv4 } from 'uuid'
 
-import { Task, taskActions, TaskDto } from './task'
+import { Task, taskActions } from './task'
 import { columnActions } from './column'
 import { AppDispatch } from './store'
+import { TaskFormDto } from './interfaces'
 
-export const createTask = (taskData: TaskDto, columnId: string) => {
-  const task: Task = { id: uuidv4(), ...taskData }
+export const createTask = (taskData: TaskFormDto, columnId: string) => {
+  const { tags, ...rest } = taskData
+  const task: Task = { id: uuidv4(), ...rest }
 
   return (dispatch: AppDispatch) => {
     dispatch(taskActions.addTask(task))
@@ -13,9 +15,11 @@ export const createTask = (taskData: TaskDto, columnId: string) => {
   }
 }
 
-export const updateTask = (taskId: string, taskData: TaskDto) => {
+export const updateTask = (taskId: string, taskData: TaskFormDto) => {
+  const { tags, ...rest } = taskData
+
   return (dispatch: AppDispatch) => {
-    dispatch(taskActions.editTask({ id: taskId, ...taskData }))
+    dispatch(taskActions.editTask({ id: taskId, ...rest }))
     // TODO: here will change the type project
   }
 }
