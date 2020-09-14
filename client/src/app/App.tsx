@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 
 import { Layout } from '../components/Layout/Layout'
@@ -14,7 +14,7 @@ import { getTasksByColumn } from '../states/selectors'
 import { useInitApp } from './useInitApp'
 import { useTasks } from './useTasks'
 
-export const App: React.FunctionComponent = () => {
+export const App: FC = () => {
   useInitApp()
 
   const { showPanel, taskDto, closePanel, handleChangeTask, handleSubmitTask } = useTasks()
