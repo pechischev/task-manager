@@ -10,6 +10,7 @@ type ColumnProps = {
 const Column: FC<ColumnProps> = ({ children, title, onAppend, onChangeTitle }) => (
   <div className="column">
     <div className="column__title">{title}</div>
+    <br />
     <div className="column__items">{children}</div>
   </div>
 )

@@ -9,7 +9,7 @@ import { SlidePanel, SlidePanelsContext } from './panel'
 import { FormInputDataType, TaskForm } from './forms/TaskForm'
 import { TagsForm } from './forms/TagsForm'
 
-import { getFilteringTasksByTag, getGroupedTasks } from '../states/selectors'
+import { getGroupedTasks } from '../states/selectors'
 
 type SelectedItemType = FormInputDataType
 
@@ -30,7 +30,7 @@ export const Content: FC = () => {
 
   const columnList = groupedTask.map(({ column, columnTasks }) => (
     <ColumnComponent key={column.id} title={column.title}>
-      {getFilteringTasksByTag(columnTasks).map((task) => (
+      {columnTasks.map((task) => (
         <TaskCard key={task.id} title={task.title} onClick={() => handleTaskClick(column.id, task.id)} />
       ))}
       <AddTask onClick={() => handleTaskClick(column.id)} />

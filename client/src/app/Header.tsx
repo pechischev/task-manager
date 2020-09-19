@@ -25,7 +25,7 @@ export const Header: FC = () => {
     (selectedOptions) => {
       const items = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
 
-      dispatch(tagActions.selectTags(items.map((item) => item.value)))
+      dispatch(tagActions.selectTags(items.map((item) => item?.value)))
     },
     [dispatch],
   )
