@@ -46,6 +46,19 @@ export const tagSlice = createSlice({
         }
       })
     },
+    replaceItems(state, action: PayloadAction<TagData>) {
+      const { itemId, tagIds } = action.payload
+      for (const tag of state.items) {
+        const containTag = tagIds.includes(tag.id)
+        const hasItemValue = tag.items.includes(itemId)
+
+        if (!containTag && hasItemValue) {
+          tag.items = tag.items.filter((item) => item !== itemId)
+        } else if (containTag && !hasItemValue) {
+          tag.items.push(itemId)
+        }
+      }
+    },
     popItems(state, action: PayloadAction<TagData>) {
       const { itemId, tagIds } = action.payload
       tagIds.forEach((tagId) => {

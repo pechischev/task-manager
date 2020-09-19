@@ -19,17 +19,18 @@ export const createTask = (taskData: TaskFormDto) => {
 }
 
 export const updateTask = (taskId: string, taskData: TaskFormDto) => {
-  const { tags, ...rest } = taskData
+  const { tags = [], ...rest } = taskData
 
   return (dispatch: AppDispatch) => {
     dispatch(taskActions.editTask({ id: taskId, ...rest }))
-    // TODO: here will change the type project
+    dispatch(tagActions.replaceItems({ itemId: taskId, tagIds: tags }))
   }
 }
 
-export const deleteTask = (taskId: string, columnId: string) => {
+export const deleteTask = (taskId: string, columnId: string, tagIds: string[] = []) => {
   return (dispatch: AppDispatch) => {
     dispatch(taskActions.removeTask(taskId))
     dispatch(columnActions.popItem({ itemId: taskId, columnId }))
+    dispatch(tagActions.popItems({ itemId: taskId, tagIds }))
   }
 }

@@ -36,6 +36,10 @@ const TaskForm: FC<TaskFormProps> = ({ data }) => {
 
   const handleChangeSelectField = useCallback(
     (selectedOptions: unknown) => {
+      if (!selectedOptions) {
+        return handleChange('tags', [])
+      }
+
       const items = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
 
       handleChange(

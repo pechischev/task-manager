@@ -37,11 +37,11 @@ export const useTaskForm = ({ columnId, taskId = undefined }: FormInputDataType)
   )
 
   const handleDelete = useCallback(() => {
-    const { id, columnId } = formData
+    const { id, columnId, tags } = formData
     if (!id) {
       throw new Error("Don't remove new task")
     }
-    const action = deleteTask(id, columnId as string)
+    const action = deleteTask(id, columnId as string, tags)
     action(dispatch)
 
     clearForm()
