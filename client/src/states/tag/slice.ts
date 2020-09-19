@@ -9,8 +9,8 @@ type TagsState = {
 const initialState: TagsState = {
   // stub data
   items: [
-    { id: '1', title: 'Home', items: [] },
-    { id: '2', title: 'Work', items: [] },
+    { id: '1', title: 'Home', items: ['1', '2'] },
+    { id: '2', title: 'Work', items: ['1', '3', '4'] },
   ],
   selectedTags: [],
 }

@@ -3,7 +3,25 @@ import { Task } from './interfaces'
 
 export const taskSlice = createSlice({
   name: 'tasks',
-  initialState: [] as Task[],
+  // stub data
+  initialState: [
+    {
+      id: '1',
+      title: 'Create list',
+    },
+    {
+      id: '2',
+      title: 'Write list',
+    },
+    {
+      id: '3',
+      title: 'Remove list',
+    },
+    {
+      id: '4',
+      title: 'Repeat',
+    },
+  ] as Task[],
   reducers: {
     addTask(state, action: PayloadAction<Task>) {
       state.push(action.payload)

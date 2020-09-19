@@ -6,18 +6,11 @@ import { Header } from './Header'
 import { Content } from './Content'
 import { SlidePanelsProvider } from './panel'
 
-import { useInitApp } from './useInitApp'
-
-export const App: React.FunctionComponent = () => {
-  // TODO: temporary solution before saving on server
-  useInitApp()
-
-  return (
-    <SlidePanelsProvider>
-      <Layout>
-        <Header />
-        <Content />
-      </Layout>
-    </SlidePanelsProvider>
-  )
-}
+export const App: React.FunctionComponent = () => (
+  <SlidePanelsProvider>
+    <Layout>
+      <Header />
+      <Content />
+    </Layout>
+  </SlidePanelsProvider>
+)
