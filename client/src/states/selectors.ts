@@ -16,3 +16,25 @@ export const getGroupedTasks = createSelector(
 
 export const getFilteringTasksByTag = (tasks: Task[], tag?: Tag): Task[] =>
   tasks.filter((task) => (tag ? tag.items.includes(task.id) : true))
+
+export const getTaskById = (taskId?: string) =>
+  createSelector(
+    (state: AppState) => state.tasks,
+    (state: AppState) => state.columns,
+    (state: AppState) => state.tags,
+    (tasks, columns, tags) => {
+      if (!taskId) {
+        return {}
+      }
+
+      const task = tasks.find((task) => task.id === taskId)
+      const column = columns.find((column) => column.items.includes(taskId))
+      const taskTags = tags.items.filter((tag) => tag.items.includes(taskId))
+
+      return {
+        ...task,
+        columnId: column?.id,
+        tags: taskTags.map((tag) => tag.id),
+      }
+    },
+  )
