@@ -14,9 +14,13 @@ type TagFieldProps = {
 const TagField: FC<TagFieldProps> = ({ tag }) => {
   const [value, setValue] = useState(tag.title)
   const dispatch = useAppDispatch()
-  const handleChange = useCallback((_, value: string) => setValue(value), [tag])
-  const handleSave = useCallback(() => dispatch(tagActions.editTag({ id: tag.id, title: value })), [tag, value])
-  const handleRemove = useCallback(() => dispatch(tagActions.removeTag(tag.id)), [tag.id])
+  const handleChange = useCallback((_, value: string) => setValue(value), [])
+  const handleSave = useCallback(() => dispatch(tagActions.editTag({ id: tag.id, title: value })), [
+    tag,
+    value,
+    dispatch,
+  ])
+  const handleRemove = useCallback(() => dispatch(tagActions.removeTag(tag.id)), [tag.id, dispatch])
 
   const isEditing = tag.title !== value
 
@@ -40,7 +44,7 @@ const AddTagField: FC = () => {
   const handleAppend = useCallback(() => {
     dispatch(tagActions.addTag({ id: uuidv4(), title: value, items: [] }))
     setValue('')
-  }, [value])
+  }, [value, dispatch])
 
   return (
     <div>
