@@ -7,7 +7,7 @@ export interface Tag {
 
 export type TagData = {
   itemId: string
-  tagId: string
+  tagIds: string[]
 }
 
 export type TagDto = Pick<Tag, 'id' | 'title' | 'color'>

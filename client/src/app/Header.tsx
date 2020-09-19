@@ -21,7 +21,14 @@ export const Header: FC = () => {
     [items],
   )
 
-  const handleChange = useCallback((selectedOption) => dispatch(tagActions.selectTags(selectedOption)), [])
+  const handleChange = useCallback(
+    (selectedOptions) => {
+      const items = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
+
+      dispatch(tagActions.selectTags(items.map((item) => item.value)))
+    },
+    [dispatch],
+  )
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>

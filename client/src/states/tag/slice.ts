@@ -37,19 +37,23 @@ export const tagSlice = createSlice({
       const tagId = action.payload
       state.items = state.items.filter((item) => item.id !== tagId)
     },
-    pushItem(state, action: PayloadAction<TagData>) {
-      const { itemId, tagId } = action.payload
-      const tag = state.items.find((item) => item.id === tagId)
-      if (tag) {
-        tag.items.push(itemId)
-      }
+    pushItems(state, action: PayloadAction<TagData>) {
+      const { itemId, tagIds } = action.payload
+      tagIds.forEach((tagId) => {
+        const tag = state.items.find((item) => item.id === tagId)
+        if (tag && !tagId.includes(itemId)) {
+          tag.items.push(itemId)
+        }
+      })
     },
-    popItem(state, action: PayloadAction<TagData>) {
-      const { itemId, tagId } = action.payload
-      const tag = state.items.find((item) => item.id === tagId)
-      if (tag) {
-        tag.items = tag.items.filter((item) => item !== itemId)
-      }
+    popItems(state, action: PayloadAction<TagData>) {
+      const { itemId, tagIds } = action.payload
+      tagIds.forEach((tagId) => {
+        const tag = state.items.find((item) => item.id === tagId)
+        if (tag) {
+          tag.items = tag.items.filter((item) => item !== itemId)
+        }
+      })
     },
   },
 })

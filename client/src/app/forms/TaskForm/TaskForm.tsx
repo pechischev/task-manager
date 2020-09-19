@@ -1,37 +1,49 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, useCallback, useMemo } from 'react'
+import { useSelector } from 'react-redux'
 
+import Select from 'react-select'
 import { Field } from '../../../components/Field'
 
-import { TaskFormDto } from '../../../states/interfaces'
+import { FormInputDataType, useTaskForm } from './useTaskForm'
+
+import { AppState } from '../../../states/store'
 
 type TaskFormProps = {
-  data?: TaskDto
-
-  onSubmit: (data: TaskFormDto) => void
+  data: FormInputDataType
 }
 
-const TaskForm: FC<TaskFormProps> = ({ data = {}, onSubmit: handleSubmit }) => {
-  const [formData, setFormData] = useState(data as TaskDto)
-
-  const onChange = useCallback(
-    (field: string, value: string) => {
-      setFormData({
-        ...formData,
-        [field]: value,
-      })
-    },
-    [formData],
-  )
+const TaskForm: FC<TaskFormProps> = ({ data }) => {
+  const { formData, handleSubmit, handleChange, handleDelete } = useTaskForm(data)
 
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault()
 
-      if (handleSubmit) {
-        handleSubmit(formData)
-      }
+      handleSubmit()
     },
-    [handleSubmit, formData],
+    [handleSubmit],
+  )
+
+  const tagsItems = useSelector((state: AppState) => state.tags.items)
+  const options = useMemo(
+    () =>
+      tagsItems.map((item) => ({
+        value: item.id,
+        label: item.title,
+      })),
+    [tagsItems],
+  )
+
+  const handleChangeSelectField = useCallback(
+    (selectedOptions: unknown) => {
+      const items = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
+
+      handleChange(
+        'tags',
+        items.map((item) => item.value),
+      )
+    },
+    [handleChange],
   )
 
   return (
@@ -40,24 +52,35 @@ const TaskForm: FC<TaskFormProps> = ({ data = {}, onSubmit: handleSubmit }) => {
         type="text"
         label="Title"
         required
-        onChange={(_, value) => onChange('title', value)}
+        onChange={(_, value) => handleChange('title', value)}
         value={formData?.title}
       />
       <Field
         type="textarea"
         label="Description"
-        onChange={(_, value) => onChange('description', value)}
+        onChange={(_, value) => handleChange('description', value)}
         value={formData?.description}
       />
       <Field
         type="date"
         label="Due date"
-        onChange={(_, value) => onChange('dueDate', value)}
+        onChange={(_, value) => handleChange('dueDate', value)}
         value={formData?.dueDate}
       />
+      <div style={{ width: 300 }}>
+        <Select
+          options={options}
+          onChange={handleChangeSelectField}
+          value={formData?.tags?.map((value) => options.find((option) => option.value === value))}
+          isMulti
+          isSearchable
+          isDisabled={!tagsItems.length}
+        />
+      </div>
       <button type="submit" onClick={onSubmit}>
         Save
       </button>
+      {!!data.taskId && <button onClick={handleDelete}>Remove</button>}
     </form>
   )
 }

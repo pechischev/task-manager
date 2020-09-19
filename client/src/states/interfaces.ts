@@ -1,3 +1,6 @@
 import { TaskDto } from './task'
 
-export type TaskFormDto = TaskDto & { tags: string[] }
+export type TaskFormDto = TaskDto & {
+  tags?: string[]
+  columnId: string
+}
