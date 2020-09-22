@@ -3,7 +3,19 @@ import { ColumnData, ColumnMoveData, Column } from './interfaces'
 
 export const columnSlice = createSlice({
   name: 'columns',
-  initialState: [] as Column[],
+  // stub data
+  initialState: [
+    {
+      id: '1',
+      title: 'Planned',
+      items: ['2', '3', '4'],
+    },
+    {
+      id: '2',
+      title: 'In progress',
+      items: ['1'],
+    },
+  ] as Column[],
   reducers: {
     addColumn(state, action: PayloadAction<Column>) {
       state.push(action.payload)
@@ -17,7 +29,7 @@ export const columnSlice = createSlice({
     },
     removeColumn(state, action: PayloadAction<string>) {
       const columnId = action.payload
-      state = state.filter((item) => item.id === columnId)
+      state = state.filter((item) => item.id !== columnId)
     },
     pushItem(state, action: PayloadAction<ColumnData>) {
       const { itemId, columnId } = action.payload

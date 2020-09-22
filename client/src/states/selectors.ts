@@ -1,13 +1,41 @@
+import { createSelector } from '@reduxjs/toolkit'
+
 import { AppState } from './store'
 
-import { Task } from './task'
+export const getGroupedTasks = createSelector(
+  (state: AppState) => state.tasks,
+  (state: AppState) => state.columns,
+  (state: AppState) => state.tags,
+  (tasks, columns, tags) => {
+    const selectedTags = tags.items.filter((tag) => tags.selectedTags?.includes(tag.id))
 
-export const getTasksByColumn = (state: AppState, columnId: string): Task[] => {
-  const { columns, tasks } = state
+    return columns.map((column) => ({
+      column,
+      columnTasks: tasks
+        .filter((task) => column.items.includes(task.id))
+        .filter((task) => (selectedTags.length ? selectedTags.some((tag) => tag.items.includes(task.id)) : true)),
+    }))
+  },
+)
 
-  const column = columns.find((column) => column.id === columnId)
-  if (!column) {
-    return []
-  }
-  return tasks.filter((task) => column.items.includes(task.id))
-}
+export const getTaskById = (taskId?: string) =>
+  createSelector(
+    (state: AppState) => state.tasks,
+    (state: AppState) => state.columns,
+    (state: AppState) => state.tags,
+    (tasks, columns, tags) => {
+      if (!taskId) {
+        return {}
+      }
+
+      const task = tasks.find((task) => task.id === taskId)
+      const column = columns.find((column) => column.items.includes(taskId))
+      const taskTags = tags.items.filter((tag) => tag.items.includes(taskId))
+
+      return {
+        ...task,
+        columnId: column?.id,
+        tags: taskTags.map((tag) => tag.id),
+      }
+    },
+  )
